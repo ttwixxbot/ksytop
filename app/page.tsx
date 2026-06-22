@@ -45,7 +45,7 @@ export default function HomePage() {
     <>
       <HeroShowroom />
 
-      <AnimatedSection>
+      <AnimatedSection className="!pt-8 md:!pt-10">
         <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
             <p className="text-sm uppercase text-bronze-100">Выбор дизайнеров</p>
