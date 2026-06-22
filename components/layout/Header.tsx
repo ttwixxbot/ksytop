@@ -22,14 +22,18 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-bronze-200/10 bg-ink-950/72 backdrop-blur-2xl">
-      <div className="mx-auto flex h-[76px] w-[min(1320px,calc(100%_-_32px))] items-center justify-between gap-5">
+      <div className="mx-auto flex h-16 w-[min(1320px,calc(100%_-_32px))] items-center justify-between gap-4 md:h-[76px] md:gap-5">
         <Link href="/" className="flex items-center gap-3" aria-label="Зона Комфорта">
-          <span className="grid h-12 w-12 place-items-center rounded-full border border-bronze-200/60 bg-bronze-300/10 shadow-bronze">
-            <PackageCheck size={24} className="text-bronze-200" aria-hidden />
+          <span className="grid h-10 w-10 place-items-center rounded-full border border-bronze-200/60 bg-bronze-300/10 shadow-bronze md:h-12 md:w-12">
+            <PackageCheck size={22} className="text-bronze-200 md:size-6" aria-hidden />
           </span>
           <span>
-            <span className="block font-display text-xl text-bronze-100">Зона Комфорта</span>
-            <span className="block text-[11px] uppercase text-mist">Мебель для дома и офиса</span>
+            <span className="block font-display text-lg leading-5 text-bronze-100 md:text-xl md:leading-normal">
+              Зона Комфорта
+            </span>
+            <span className="block text-[10px] uppercase text-mist md:text-[11px]">
+              Мебель для дома и офиса
+            </span>
           </span>
         </Link>
 
@@ -62,7 +66,7 @@ export function Header() {
 
         <button
           type="button"
-          className="grid h-11 w-11 place-items-center rounded-[10px] border border-bronze-200/25 bg-ivory/[0.04] text-ivory lg:hidden"
+          className="grid h-10 w-10 place-items-center rounded-[10px] border border-bronze-200/25 bg-ivory/[0.04] text-ivory md:h-11 md:w-11 lg:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? "Закрыть меню" : "Открыть меню"}
         >
