@@ -27,6 +27,8 @@ export function HeroShowroom() {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,6,7,0.76)_0%,rgba(5,6,7,0.54)_45%,rgba(5,6,7,0.78)_100%)] md:bg-[linear-gradient(90deg,rgba(5,6,7,0.94)_0%,rgba(5,6,7,0.82)_32%,rgba(5,6,7,0.36)_62%,rgba(5,6,7,0.28)_100%)]" />
       <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgba(5,6,7,0.62)_0%,rgba(5,6,7,0.08)_34%,rgba(5,6,7,0.72)_100%)] md:block" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_38%,rgba(200,148,85,0.12),transparent_18rem)] md:bg-[radial-gradient(circle_at_15%_48%,rgba(200,148,85,0.16),transparent_25rem),radial-gradient(circle_at_74%_34%,rgba(232,191,132,0.08),transparent_30rem)]" />
+      <div className="luxury-light-ribbon luxury-light-ribbon-one" aria-hidden />
+      <div className="luxury-light-ribbon luxury-light-ribbon-two" aria-hidden />
 
       <div className="ambient-orbit left-[5%] top-[18%] hidden h-[260px] w-[58%] sm:block" aria-hidden />
       <div className="ambient-orbit right-[-10%] top-[46%] hidden h-[220px] w-[56%] md:block" aria-hidden />
@@ -37,7 +39,7 @@ export function HeroShowroom() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-30 max-w-[22rem] self-end md:max-w-2xl md:self-auto"
+            className="premium-copy-reveal relative z-30 max-w-[22rem] self-end md:max-w-2xl md:self-auto"
           >
             <p className="mb-3 text-xs uppercase tracking-[0.12em] text-bronze-200 md:mb-5 md:text-sm md:tracking-normal">
               Мебель для дома и офиса
@@ -88,7 +90,7 @@ export function HeroShowroom() {
               key={category.slug}
               href={`/catalog/${category.slug}`}
               aria-label={`Открыть категорию ${category.name}`}
-              className="glass-card flex items-center gap-3 p-3 transition duration-300 hover:-translate-y-1 hover:border-bronze-200/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze-200"
+              className="premium-motion-card glass-card flex items-center gap-3 p-3 transition duration-300 hover:-translate-y-1 hover:border-bronze-200/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze-200"
             >
               <img
                 src={assetPath(category.image)}

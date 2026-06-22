@@ -7,7 +7,7 @@ export function CollectionCard({ collection, large = false }: { collection: Coll
   return (
     <Link
       href={`/collections/${collection.slug}`}
-      className="group relative isolate min-h-[210px] overflow-hidden rounded-[14px] border border-bronze-200/18 bg-ink-900 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-bronze-200/60 hover:shadow-bronze"
+      className="premium-motion-card group relative isolate min-h-[210px] overflow-hidden rounded-[14px] border border-bronze-200/18 bg-ink-900 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-bronze-200/60 hover:shadow-bronze"
     >
       <img
         src={assetPath(collection.image)}

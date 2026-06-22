@@ -43,7 +43,7 @@ export function Button({
     </>
   );
   const classes = cn(
-    "inline-flex min-h-12 items-center justify-center gap-3 rounded-[10px] px-5 py-3 text-sm font-semibold transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze-200 disabled:cursor-not-allowed disabled:opacity-55",
+    "premium-button inline-flex min-h-12 items-center justify-center gap-3 rounded-[10px] px-5 py-3 text-sm font-semibold transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze-200 disabled:cursor-not-allowed disabled:opacity-55",
     variantClasses[variant],
     className
   );

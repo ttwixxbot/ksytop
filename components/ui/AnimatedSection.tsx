@@ -13,10 +13,10 @@ type AnimatedSectionProps = {
 export function AnimatedSection({ children, className, delay = 0 }: AnimatedSectionProps) {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: 0.86, ease: [0.22, 1, 0.36, 1], delay }}
       className={cn("section-shell", className)}
     >
       {children}

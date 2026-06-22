@@ -19,7 +19,7 @@ export function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <article className="group relative flex h-full min-h-[500px] flex-col overflow-hidden rounded-[14px] border border-bronze-200/16 bg-ivory/[0.035] shadow-soft transition duration-300 hover:-translate-y-2 hover:border-bronze-200/65 hover:bg-ivory/[0.055] hover:shadow-bronze">
+    <article className="premium-motion-card group relative flex h-full min-h-[500px] flex-col overflow-hidden rounded-[14px] border border-bronze-200/16 bg-ivory/[0.035] shadow-soft transition duration-300 hover:-translate-y-2 hover:border-bronze-200/65 hover:bg-ivory/[0.055] hover:shadow-bronze">
       <Link href={`/product/${product.slug}`} className="block">
         <span className="relative block aspect-[1.28] overflow-hidden bg-ink-900">
           <SafeImage
@@ -60,7 +60,7 @@ export function ProductCard({ product }: { product: Product }) {
             type="button"
             onClick={handleAdd}
             aria-label={`Добавить ${product.name} в заявку`}
-            className="inline-flex h-10 items-center gap-2 rounded-[10px] border border-bronze-200/35 px-3 text-sm font-semibold text-bronze-100 transition hover:bg-bronze-200 hover:text-ink-950"
+            className="premium-button inline-flex h-10 items-center gap-2 rounded-[10px] border border-bronze-200/35 px-3 text-sm font-semibold text-bronze-100 transition hover:bg-bronze-200 hover:text-ink-950"
           >
             <Plus size={17} aria-hidden />
             В заявку

@@ -23,9 +23,10 @@ export function CategoryOrbitCards() {
           href={`/catalog/${category.slug}`}
           aria-label={`Открыть категорию ${category.name}`}
           className={cn(
-            "glass-card pointer-events-auto absolute z-30 flex w-[218px] items-center gap-3 p-3 transition duration-300 hover:-translate-y-2 hover:border-bronze-200/70 hover:shadow-bronze focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze-200 2xl:w-[236px]",
+            "premium-motion-card premium-orbit-card glass-card pointer-events-auto absolute z-30 flex w-[218px] items-center gap-3 p-3 transition duration-300 hover:-translate-y-2 hover:border-bronze-200/70 hover:shadow-bronze focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze-200 2xl:w-[236px]",
             positions[index]
           )}
+          style={{ animationDelay: `${index * 0.22}s` }}
         >
           <img
             src={assetPath(category.image)}
@@ -48,7 +49,8 @@ export function CategoryOrbitCards() {
       <Link
         href="/catalog"
         aria-label="Открыть весь каталог"
-        className="glass-card pointer-events-auto absolute left-[43%] top-[35%] z-20 w-40 p-4 transition duration-300 hover:-translate-y-2 hover:border-bronze-200/70 hover:shadow-bronze focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze-200 2xl:w-44"
+        className="premium-motion-card premium-orbit-card glass-card pointer-events-auto absolute left-[43%] top-[35%] z-20 w-40 p-4 transition duration-300 hover:-translate-y-2 hover:border-bronze-200/70 hover:shadow-bronze focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze-200 2xl:w-44"
+        style={{ animationDelay: "0.6s" }}
       >
         <span className="block font-display text-6xl leading-none text-bronze-100">7</span>
         <span className="mt-1 block text-sm leading-5 text-mist">

@@ -186,6 +186,259 @@ img {
   filter: saturate(1.08) brightness(1.05);
 }
 
+.premium-copy-reveal > * {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(10px);
+  animation: premiumCopyIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.premium-copy-reveal > :nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.premium-copy-reveal > :nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.premium-copy-reveal > :nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.premium-copy-reveal > :nth-child(5) {
+  animation-delay: 0.3s;
+}
+
+.premium-copy-reveal > :nth-child(6) {
+  animation-delay: 0.36s;
+}
+
+.premium-motion-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.55s ease,
+    box-shadow 0.55s ease,
+    background-color 0.55s ease,
+    filter 0.55s ease;
+}
+
+.premium-motion-card::before {
+  position: absolute;
+  inset: -35%;
+  z-index: 30;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(
+    112deg,
+    transparent 24%,
+    rgba(255, 247, 232, 0.03) 38%,
+    rgba(232, 191, 132, 0.26) 47%,
+    rgba(255, 247, 232, 0.07) 54%,
+    transparent 68%
+  );
+  opacity: 0;
+  transform: translateX(-64%) skewX(-12deg);
+  transition:
+    opacity 0.45s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-motion-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: 31;
+  padding: 1px;
+  content: "";
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 247, 232, 0.02),
+    rgba(232, 191, 132, 0.58),
+    rgba(255, 247, 232, 0.02)
+  );
+  opacity: 0;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: opacity 0.5s ease;
+}
+
+.premium-motion-card:hover::before,
+.premium-motion-card:focus-visible::before {
+  opacity: 1;
+  transform: translateX(58%) skewX(-12deg);
+}
+
+.premium-motion-card:hover::after,
+.premium-motion-card:focus-visible::after {
+  opacity: 1;
+}
+
+.premium-orbit-card {
+  animation: premiumCardBreath 7.5s ease-in-out infinite;
+}
+
+.premium-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.premium-button > * {
+  position: relative;
+  z-index: 1;
+}
+
+.premium-button::after {
+  position: absolute;
+  inset: -40%;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 28%,
+    rgba(255, 255, 255, 0.12) 42%,
+    rgba(255, 247, 232, 0.26) 48%,
+    transparent 62%
+  );
+  opacity: 0;
+  transform: translateX(-72%) skewX(-14deg);
+  transition:
+    opacity 0.35s ease,
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-button:hover::after,
+.premium-button:focus-visible::after {
+  opacity: 1;
+  transform: translateX(72%) skewX(-14deg);
+}
+
+.premium-nav-link {
+  position: relative;
+}
+
+.premium-nav-link::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(232, 191, 132, 0.95), transparent);
+  opacity: 0;
+  transform: scaleX(0.34);
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-nav-link:hover::after,
+.premium-nav-link:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.premium-logo-ring {
+  animation: premiumLogoPulse 6.5s ease-in-out infinite;
+}
+
+.luxury-light-ribbon {
+  position: absolute;
+  z-index: 4;
+  width: min(920px, 66vw);
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(232, 191, 132, 0.18),
+    rgba(255, 247, 232, 0.75),
+    rgba(232, 191, 132, 0.18),
+    transparent
+  );
+  background-size: 220% 100%;
+  opacity: 0.44;
+  filter: drop-shadow(0 0 14px rgba(232, 191, 132, 0.36));
+  animation: premiumRibbon 9s ease-in-out infinite;
+}
+
+.luxury-light-ribbon-one {
+  top: 21%;
+  right: 3%;
+  transform: rotate(-8deg);
+}
+
+.luxury-light-ribbon-two {
+  bottom: 18%;
+  left: 4%;
+  width: min(760px, 52vw);
+  opacity: 0.32;
+  transform: rotate(7deg);
+  animation-delay: -4s;
+}
+
+@keyframes premiumCopyIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes premiumCardBreath {
+  0%,
+  100% {
+    filter: brightness(1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 22px 70px rgba(0, 0, 0, 0.42);
+  }
+
+  50% {
+    filter: brightness(1.055);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 26px 84px rgba(0, 0, 0, 0.48),
+      0 0 34px rgba(200, 148, 85, 0.16);
+  }
+}
+
+@keyframes premiumLogoPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 30px rgba(200, 148, 85, 0.18);
+  }
+
+  50% {
+    box-shadow:
+      0 0 30px rgba(200, 148, 85, 0.25),
+      0 0 46px rgba(232, 191, 132, 0.14);
+  }
+}
+
+@keyframes premiumRibbon {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.3;
+  }
+
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.62;
+  }
+}
+
 @media (max-width: 768px) {
   .section-shell {
     width: min(100% - 28px, 680px);
@@ -194,5 +447,31 @@ img {
 
   .showroom-shell {
     min-height: auto;
+  }
+
+  .luxury-light-ribbon,
+  .premium-orbit-card {
+    animation: none;
+  }
+
+  .luxury-light-ribbon {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .premium-copy-reveal > * {
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }
