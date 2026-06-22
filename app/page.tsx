@@ -55,7 +55,7 @@ export default function HomePage() {
             Смотреть каталог
           </Button>
         </div>
-        <ProductGrid products={popularProducts} />
+        <ProductGrid products={popularProducts} layout="singleRow" />
       </AnimatedSection>
 
       <AnimatedSection>

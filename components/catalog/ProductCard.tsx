@@ -5,11 +5,11 @@ import { ArrowUpRight, Heart, Plus } from "lucide-react";
 import type { Product } from "@/data/products";
 import { getCategoryName } from "@/data/categories";
 import { useRequestCart } from "@/components/request/RequestCartContext";
-import { formatPrice } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { useToast } from "@/components/ui/ToastProvider";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
   const { toast } = useToast();
   const { addItem } = useRequestCart();
 
@@ -19,9 +19,14 @@ export function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <article className="premium-motion-card group relative flex h-full min-h-[500px] flex-col overflow-hidden rounded-[14px] border border-bronze-200/16 bg-ivory/[0.035] shadow-soft transition duration-300 hover:-translate-y-2 hover:border-bronze-200/65 hover:bg-ivory/[0.055] hover:shadow-bronze">
+    <article
+      className={cn(
+        "premium-motion-card group relative flex h-full flex-col overflow-hidden rounded-[14px] border border-bronze-200/16 bg-ivory/[0.035] shadow-soft transition duration-300 hover:-translate-y-2 hover:border-bronze-200/65 hover:bg-ivory/[0.055] hover:shadow-bronze",
+        compact ? "min-h-[430px]" : "min-h-[500px]"
+      )}
+    >
       <Link href={`/product/${product.slug}`} className="block">
-        <span className="relative block aspect-[1.28] overflow-hidden bg-ink-900">
+        <span className={cn("relative block overflow-hidden bg-ink-900", compact ? "aspect-[1.08]" : "aspect-[1.28]")}>
           <SafeImage
             src={product.images[0]}
             alt={product.name}
@@ -43,15 +48,27 @@ export function ProductCard({ product }: { product: Product }) {
       >
         <Heart size={16} aria-hidden />
       </button>
-      <div className="flex flex-1 flex-col p-4">
+      <div className={cn("flex flex-1 flex-col", compact ? "p-3.5" : "p-4")}>
         <p className="text-xs uppercase text-bronze-100">{getCategoryName(product.category)}</p>
-        <h3 className="mt-2 min-h-12 text-lg font-semibold leading-6 text-ivory">{product.name}</h3>
-        <p className="mt-2 line-clamp-3 min-h-[60px] text-sm leading-5 text-mist">
+        <h3
+          className={cn(
+            "font-semibold text-ivory",
+            compact ? "mt-1.5 min-h-10 text-base leading-5" : "mt-2 min-h-12 text-lg leading-6"
+          )}
+        >
+          {product.name}
+        </h3>
+        <p
+          className={cn(
+            "mt-2 text-mist",
+            compact ? "line-clamp-2 min-h-10 text-xs leading-5" : "line-clamp-3 min-h-[60px] text-sm leading-5"
+          )}
+        >
           {product.shortDescription}
         </p>
-        <div className="mt-auto flex items-end justify-between gap-3 pt-5">
+        <div className={cn("mt-auto flex items-end justify-between gap-3", compact ? "pt-4" : "pt-5")}>
           <div>
-            <p className="text-xl font-semibold text-ivory">{formatPrice(product.price)}</p>
+            <p className={cn("font-semibold text-ivory", compact ? "text-lg" : "text-xl")}>{formatPrice(product.price)}</p>
             {product.oldPrice ? (
               <p className="text-sm text-mist line-through">{formatPrice(product.oldPrice)}</p>
             ) : null}
@@ -60,7 +77,12 @@ export function ProductCard({ product }: { product: Product }) {
             type="button"
             onClick={handleAdd}
             aria-label={`Добавить ${product.name} в заявку`}
-            className="premium-button inline-flex h-10 items-center gap-2 rounded-[10px] border border-bronze-200/35 px-3 text-sm font-semibold text-bronze-100 transition hover:bg-bronze-200 hover:text-ink-950"
+            title="Р”РѕР±Р°РІРёС‚СЊ РІ Р·Р°СЏРІРєСѓ"
+            style={compact ? { fontSize: 0 } : undefined}
+            className={cn(
+              "premium-button inline-flex items-center rounded-[10px] border border-bronze-200/35 text-sm font-semibold text-bronze-100 transition hover:bg-bronze-200 hover:text-ink-950",
+              compact ? "h-9 w-9 justify-center px-0 text-[0px]" : "h-10 gap-2 px-3"
+            )}
           >
             <Plus size={17} aria-hidden />
             В заявку
@@ -68,7 +90,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
         <Link
           href={`/product/${product.slug}`}
-          className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-bronze-100"
+          className={cn("inline-flex items-center gap-2 font-semibold text-bronze-100", compact ? "mt-3 text-xs" : "mt-4 text-sm")}
         >
           Подробнее <ArrowUpRight size={15} aria-hidden />
         </Link>
