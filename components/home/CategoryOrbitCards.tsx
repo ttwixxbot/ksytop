@@ -4,19 +4,38 @@ import { categories, type CategorySlug } from "@/data/categories";
 import { assetPath } from "@/lib/asset-path";
 
 const orbitPoints: Record<CategorySlug, { x: number; y: number }> = {
-  kitchens: { x: 15, y: 9 },
-  sofas: { x: 39, y: 5 },
-  wardrobes: { x: 65, y: 10 },
-  beds: { x: 83, y: 34 },
-  "bedside-tables": { x: 76, y: 59 },
-  bedrooms: { x: 47, y: 83 },
-  "office-chairs": { x: 27, y: 52 }
+  kitchens: { x: 12, y: 12 },
+  sofas: { x: 38, y: 7 },
+  wardrobes: { x: 64, y: 13 },
+  beds: { x: 84, y: 34 },
+  "bedside-tables": { x: 77, y: 58 },
+  bedrooms: { x: 50, y: 84 },
+  "office-chairs": { x: 28, y: 51 }
 };
+
+const catalogPoint = { x: 73, y: 86 };
 
 export function CategoryOrbitCards() {
   return (
     <div className="pointer-events-none absolute inset-0 z-20 hidden xl:block">
       <div className="absolute bottom-[8%] left-[35%] right-[1%] top-[6%] rounded-full border border-transparent" aria-hidden>
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path
+            d="M 12 12 C 30 2 54 4 66 13 C 88 29 91 61 76 79 C 67 90 57 94 43 90"
+            fill="none"
+            stroke="rgba(232, 191, 132, 0.42)"
+            strokeLinecap="round"
+            strokeWidth="2"
+            vectorEffect="non-scaling-stroke"
+            filter="drop-shadow(0 0 18px rgba(232, 191, 132, 0.38))"
+          />
+        </svg>
+
         {categories.map((category, index) => {
           const point = orbitPoints[category.slug];
 
@@ -58,7 +77,7 @@ export function CategoryOrbitCards() {
 
         <div
           className="pointer-events-none absolute z-20"
-          style={{ left: "75%", top: "86%", transform: "translate(-50%, -50%)" }}
+          style={{ left: `${catalogPoint.x}%`, top: `${catalogPoint.y}%`, transform: "translate(-50%, -50%)" }}
         >
           <Link
             href="/catalog"
