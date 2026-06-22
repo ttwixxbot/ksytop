@@ -4,19 +4,19 @@ import { categories, type CategorySlug } from "@/data/categories";
 import { assetPath } from "@/lib/asset-path";
 
 const orbitPoints: Record<CategorySlug, { x: number; y: number }> = {
-  kitchens: { x: 10, y: 14 },
-  sofas: { x: 40, y: 8 },
-  wardrobes: { x: 70, y: 14 },
-  beds: { x: 90, y: 38 },
-  "bedside-tables": { x: 82, y: 61 },
-  bedrooms: { x: 50, y: 82 },
-  "office-chairs": { x: 10, y: 48 }
+  kitchens: { x: 15, y: 9 },
+  sofas: { x: 39, y: 5 },
+  wardrobes: { x: 65, y: 10 },
+  beds: { x: 83, y: 34 },
+  "bedside-tables": { x: 76, y: 59 },
+  bedrooms: { x: 47, y: 83 },
+  "office-chairs": { x: 27, y: 52 }
 };
 
 export function CategoryOrbitCards() {
   return (
     <div className="pointer-events-none absolute inset-0 z-20 hidden xl:block">
-      <div className="absolute bottom-[9%] left-[32%] right-[2%] top-[5%] rounded-full border border-transparent" aria-hidden>
+      <div className="absolute bottom-[8%] left-[35%] right-[1%] top-[6%] rounded-full border border-transparent" aria-hidden>
         {categories.map((category, index) => {
           const point = orbitPoints[category.slug];
 
@@ -58,7 +58,7 @@ export function CategoryOrbitCards() {
 
         <div
           className="pointer-events-none absolute z-20"
-          style={{ left: "87%", top: "86%", transform: "translate(-50%, -50%)" }}
+          style={{ left: "75%", top: "86%", transform: "translate(-50%, -50%)" }}
         >
           <Link
             href="/catalog"

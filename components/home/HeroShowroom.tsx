@@ -33,7 +33,7 @@ export function HeroShowroom() {
       <div className="ambient-orbit left-[5%] top-[18%] hidden h-[260px] w-[58%] sm:block" aria-hidden />
       <div className="ambient-orbit right-[-10%] top-[46%] hidden h-[220px] w-[56%] md:block" aria-hidden />
 
-      <div className="section-shell relative z-10 flex min-h-[calc(100svh-64px)] flex-col justify-end !pb-8 !pt-10 md:min-h-[calc(100vh-126px)] md:justify-center md:!py-8 lg:!py-10">
+      <div className="section-shell hero-stage-shell relative z-10 flex min-h-[calc(100svh-64px)] flex-col justify-end !pb-8 !pt-10 md:min-h-[calc(100vh-126px)] md:justify-center md:!py-8 lg:!py-10">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

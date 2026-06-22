@@ -72,6 +72,10 @@ img {
   padding-block: clamp(42px, 6vw, 96px);
 }
 
+.hero-stage-shell {
+  width: min(1760px, calc(100% - clamp(40px, 6vw, 128px)));
+}
+
 .glass-card {
   border: 1px solid rgba(232, 191, 132, 0.2);
   border-radius: 14px;
