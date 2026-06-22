@@ -145,6 +145,10 @@ img {
   line-height: 0.98;
 }
 
+.hero-title {
+  font-size: clamp(3rem, 4.25vw, 4.85rem);
+}
+
 .page-title {
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(2.5rem, 5vw, 5rem);

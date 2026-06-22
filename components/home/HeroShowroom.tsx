@@ -15,7 +15,7 @@ export function HeroShowroom() {
   const cardsOpacity = useTransform(scrollY, [0, 650], [1, 0.72]);
 
   return (
-    <section className="relative min-h-[calc(100svh-64px)] overflow-hidden md:min-h-[calc(100vh-76px)]">
+    <section className="relative min-h-[calc(100svh-64px)] overflow-hidden md:min-h-[calc(100vh-126px)]">
       <motion.img
         src={assetPath("/images/hero/showroom-hero.png")}
         alt=""
@@ -33,56 +33,54 @@ export function HeroShowroom() {
       <div className="ambient-orbit left-[5%] top-[18%] hidden h-[260px] w-[58%] sm:block" aria-hidden />
       <div className="ambient-orbit right-[-10%] top-[46%] hidden h-[220px] w-[56%] md:block" aria-hidden />
 
-      <div className="section-shell relative z-10 flex min-h-[calc(100svh-64px)] flex-col justify-end !pb-8 !pt-10 md:min-h-[calc(100vh-76px)] md:justify-center md:!py-8 lg:!py-10">
-        <div className="grid flex-1 items-center gap-8 xl:grid-cols-[0.74fr_1.26fr]">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="premium-copy-reveal relative z-30 max-w-[22rem] self-end md:max-w-2xl md:self-auto"
-          >
-            <p className="mb-3 text-xs uppercase tracking-[0.12em] text-bronze-200 md:mb-5 md:text-sm md:tracking-normal">
-              Мебель для дома и офиса
-            </p>
-            <h1 className="premium-title bronze-line">Собери пространство под себя</h1>
-            <p className="mt-7 max-w-[19rem] text-sm leading-6 text-mist md:mt-8 md:max-w-xl md:text-lg md:leading-7">
-              Премиальные интерьеры для дома и офиса без лишнего шума.
-            </p>
-            <div className="mt-6 flex max-w-[19rem] flex-col gap-3 sm:flex-row md:mt-8 md:max-w-none">
-              <Button href="/catalog" className="w-full sm:w-auto">
-                Перейти в каталог
-              </Button>
-              <Button
-                href="/collections"
-                variant="secondary"
-                icon={<Play size={15} aria-hidden />}
-                className="hidden sm:inline-flex"
-              >
-                Смотреть коллекции
-              </Button>
-            </div>
-            <Link
+      <div className="section-shell relative z-10 flex min-h-[calc(100svh-64px)] flex-col justify-end !pb-8 !pt-10 md:min-h-[calc(100vh-126px)] md:justify-center md:!py-8 lg:!py-10">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="premium-copy-reveal relative z-40 max-w-[23rem] xl:max-w-[25rem]"
+        >
+          <p className="mb-3 text-xs uppercase tracking-[0.12em] text-bronze-200 md:mb-5 md:text-sm md:tracking-normal">
+            Мебель для дома и офиса
+          </p>
+          <h1 className="premium-title hero-title bronze-line">Собери пространство под себя</h1>
+          <p className="mt-7 max-w-[19rem] text-sm leading-6 text-mist md:mt-8 md:max-w-xl md:text-lg md:leading-7">
+            Премиальные интерьеры для дома и офиса без лишнего шума.
+          </p>
+          <div className="mt-6 flex max-w-[19rem] flex-col gap-3 sm:flex-row md:mt-8 md:max-w-none">
+            <Button href="/catalog" className="w-full sm:w-auto">
+              Перейти в каталог
+            </Button>
+            <Button
               href="/collections"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-bronze-100 sm:hidden"
+              variant="secondary"
+              icon={<Play size={15} aria-hidden />}
+              className="hidden sm:inline-flex"
             >
               Смотреть коллекции
-              <Play size={14} aria-hidden />
-            </Link>
-            <div className="glass-card mt-9 hidden max-w-xs p-4 md:block">
-              <p className="text-sm font-semibold text-ivory">Премиальные материалы</p>
-              <p className="mt-1 text-xs leading-5 text-mist">
-                Европейская фурнитура, фактурные ткани и гарантия до 5 лет.
-              </p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            style={{ y: cardsY, opacity: cardsOpacity }}
-            className="showroom-shell pointer-events-none hidden min-h-[620px] xl:block"
+            </Button>
+          </div>
+          <Link
+            href="/collections"
+            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-bronze-100 sm:hidden"
           >
-            <CategoryOrbitCards />
-          </motion.div>
-        </div>
+            Смотреть коллекции
+            <Play size={14} aria-hidden />
+          </Link>
+          <div className="glass-card mt-9 hidden max-w-xs p-4 md:block">
+            <p className="text-sm font-semibold text-ivory">Премиальные материалы</p>
+            <p className="mt-1 text-xs leading-5 text-mist">
+              Европейская фурнитура, фактурные ткани и гарантия до 5 лет.
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          style={{ y: cardsY, opacity: cardsOpacity }}
+          className="pointer-events-none absolute inset-0 z-30 hidden xl:block"
+        >
+          <CategoryOrbitCards />
+        </motion.div>
 
         <div className="relative z-20 mt-5 hidden gap-3 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:hidden">
           {categories.map((category) => (
