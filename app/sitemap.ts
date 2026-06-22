@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { categories } from "@/data/categories";
+import { collections } from "@/data/collections";
 import { products } from "@/data/products";
+import { roomIdeas } from "@/data/rooms";
 
 export const dynamic = "force-static";
 
@@ -19,10 +21,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date()
   }));
 
+  const collectionRoutes = collections.map((collection) => ({
+    url: `${base}/collections/${collection.slug}`,
+    lastModified: new Date()
+  }));
+
+  const ideaRoutes = roomIdeas.map((idea) => ({
+    url: `${base}/ideas/${idea.slug}`,
+    lastModified: new Date()
+  }));
+
   const productRoutes = products.map((product) => ({
     url: `${base}/product/${product.slug}`,
     lastModified: new Date()
   }));
 
-  return [...routes, ...categoryRoutes, ...productRoutes];
+  return [...routes, ...categoryRoutes, ...collectionRoutes, ...ideaRoutes, ...productRoutes];
 }

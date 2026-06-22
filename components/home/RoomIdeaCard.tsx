@@ -6,7 +6,8 @@ import { assetPath } from "@/lib/asset-path";
 export function RoomIdeaCard({ idea }: { idea: RoomIdea }) {
   return (
     <Link
-      href="/ideas"
+      href={`/ideas/${idea.slug}`}
+      aria-label={`Открыть идею ${idea.title}`}
       className="group relative min-h-[250px] overflow-hidden rounded-[14px] border border-bronze-200/18 bg-ink-900 transition duration-300 hover:-translate-y-1 hover:border-bronze-200/55 hover:shadow-bronze"
     >
       <img
