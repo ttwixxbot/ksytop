@@ -5,13 +5,13 @@ import { assetPath } from "@/lib/asset-path";
 import { cn } from "@/lib/utils";
 
 const positions = [
-  "xl:left-[3%] xl:top-[13%]",
-  "xl:left-[37%] xl:top-[3%]",
-  "xl:right-[0%] xl:top-[17%]",
-  "xl:right-[2%] xl:top-[53%]",
-  "xl:left-[0%] xl:top-[43%]",
-  "xl:right-[12%] xl:bottom-[10%]",
-  "xl:left-[21%] xl:bottom-[2%]"
+  "xl:left-[7%] xl:top-[6%]",
+  "xl:left-[39%] xl:top-[3%]",
+  "xl:right-[2%] xl:top-[18%]",
+  "xl:right-[3%] xl:top-[48%]",
+  "xl:left-[1%] xl:top-[60%]",
+  "xl:right-[0%] xl:bottom-[14%]",
+  "xl:left-[35%] xl:bottom-[0%]"
 ];
 
 export function CategoryOrbitCards() {
