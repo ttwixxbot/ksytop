@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo } from "react";
 import { Minus, Plus, Trash2 } from "lucide-react";
+import Link from "next/link";
 import { products } from "@/data/products";
 import { getCategoryName } from "@/data/categories";
 import { useRequestCart } from "@/components/request/RequestCartContext";
@@ -9,10 +10,11 @@ import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { useToast } from "@/components/ui/ToastProvider";
+import { createMailtoLink } from "@/lib/mailto";
 
 export function RequestCart() {
   const { toast } = useToast();
-  const { items, hydrated, incrementItem, decrementItem, removeItem, clear } = useRequestCart();
+  const { items, hydrated, incrementItem, decrementItem, removeItem } = useRequestCart();
   const detailedItems = useMemo(
     () =>
       items
@@ -47,10 +49,23 @@ export function RequestCart() {
       return;
     }
 
-    console.log("Selection request", payload);
-    clear();
-    event.currentTarget.reset();
-    toast("Заявка отправлена", "Подборка передана дизайнеру-консультанту.");
+    window.location.href = createMailtoLink({
+      subject: "Заявка на подбор мебели Зона Комфорта",
+      lines: [
+        "Здравствуйте.",
+        "Прошу связаться для уточнения подборки мебели.",
+        "",
+        `Имя: ${payload.name.trim()}`,
+        `Телефон: ${payload.phone.trim()}`,
+        payload.comment.trim() ? `Комментарий: ${payload.comment.trim()}` : "",
+        "",
+        "Товары:",
+        ...payload.products.map((item) => `- ${item.name} — ${item.quantity} шт.`),
+        "",
+        `Ориентировочная сумма: ${formatPrice(total)}`
+      ]
+    });
+    toast("Письмо подготовлено", "Подтвердите отправку в почтовом клиенте.");
   };
 
   if (!hydrated) {
@@ -133,11 +148,18 @@ export function RequestCart() {
         <div className="grid gap-4">
           <label className="grid gap-2 text-sm text-mist">
             Имя
-            <input className="field h-12 px-4" name="name" placeholder="Ваше имя" />
+            <input className="field h-12 px-4" name="name" placeholder="Ваше имя" autoComplete="name" required />
           </label>
           <label className="grid gap-2 text-sm text-mist">
             Телефон
-            <input className="field h-12 px-4" name="phone" placeholder="+7 (___) ___-__-__" />
+            <input
+              className="field h-12 px-4"
+              name="phone"
+              type="tel"
+              placeholder="+7 (___) ___-__-__"
+              autoComplete="tel"
+              required
+            />
           </label>
           <label className="grid gap-2 text-sm text-mist">
             Комментарий
@@ -150,6 +172,13 @@ export function RequestCart() {
           <Button type="submit" disabled={!detailedItems.length}>
             Отправить заявку
           </Button>
+          <p className="text-xs leading-5 text-mist">
+            Нажимая кнопку, вы соглашаетесь на обработку персональных данных по{" "}
+            <Link href="/privacy" className="text-bronze-100 underline-offset-4 hover:underline">
+              Политике конфиденциальности
+            </Link>
+            .
+          </p>
         </div>
       </form>
     </div>

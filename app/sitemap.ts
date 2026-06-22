@@ -9,12 +9,24 @@ export const dynamic = "force-static";
 const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://zonakomforta.ru";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/catalog", "/collections", "/ideas", "/about", "/contacts", "/request"].map(
-    (route) => ({
+  const routes = [
+    "",
+    "/catalog",
+    "/collections",
+    "/ideas",
+    "/about",
+    "/contacts",
+    "/request",
+    "/delivery",
+    "/warranty",
+    "/returns",
+    "/faq",
+    "/privacy",
+    "/terms"
+  ].map((route) => ({
       url: `${base}${route}`,
       lastModified: new Date()
-    })
-  );
+    }));
 
   const categoryRoutes = categories.map((category) => ({
     url: `${base}/catalog/${category.slug}`,

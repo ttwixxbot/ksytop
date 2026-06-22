@@ -22,6 +22,7 @@ jobs:
       GITHUB_PAGES: "true"
       NEXT_PUBLIC_BASE_PATH: /ksytop
       NEXT_PUBLIC_SITE_URL: https://ttwixxbot.github.io/ksytop
+      NEXT_PUBLIC_YANDEX_METRIKA_ID: ${{ secrets.YANDEX_METRIKA_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

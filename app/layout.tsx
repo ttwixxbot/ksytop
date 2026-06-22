@@ -5,8 +5,10 @@ import { Footer } from "@/components/layout/Footer";
 import { RequestCartProvider } from "@/components/request/RequestCartContext";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
 import { ToastProvider } from "@/components/ui/ToastProvider";
+import { CookieConsent } from "@/components/legal/CookieConsent";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://zonakomforta.ru";
+const yandexMetrikaId = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -50,6 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Header />
               <main>{children}</main>
               <Footer />
+              <CookieConsent yandexMetrikaId={yandexMetrikaId} />
             </SmoothScrollProvider>
           </RequestCartProvider>
         </ToastProvider>

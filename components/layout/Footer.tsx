@@ -1,13 +1,26 @@
 import Link from "next/link";
-import { ArrowRight, Facebook, Instagram, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { categories } from "@/data/categories";
+import { siteContacts } from "@/data/site";
+import { NewsletterForm } from "@/components/forms/NewsletterForm";
+import { CookieSettingsLink } from "@/components/legal/CookieSettingsLink";
 
-const buyerLinks = ["Доставка и оплата", "Гарантия", "Возврат и обмен", "Вопросы и ответы"];
+const buyerLinks = [
+  { label: "Доставка и оплата", href: "/delivery" },
+  { label: "Гарантия", href: "/warranty" },
+  { label: "Возврат и обмен", href: "/returns" },
+  { label: "Вопросы и ответы", href: "/faq" }
+];
 const companyLinks = [
   { label: "О нас", href: "/about" },
-  { label: "Производство", href: "/about" },
-  { label: "Наши материалы", href: "/ideas" },
+  { label: "Коллекции", href: "/collections" },
+  { label: "Идеи для дома", href: "/ideas" },
   { label: "Контакты", href: "/contacts" }
+];
+const contactLinks = [
+  { href: siteContacts.phoneHref, label: "Позвонить", icon: Phone },
+  { href: siteContacts.emailHref, label: "Написать на почту", icon: Mail },
+  { href: "/contacts", label: "Открыть контакты", icon: Send }
 ];
 
 export function Footer() {
@@ -30,16 +43,27 @@ export function Footer() {
               онлайн-оплаты: подбираем мебель и оформляем заявку персонально.
             </p>
             <div className="mt-6 flex gap-3">
-              {[Instagram, Facebook, Send].map((Icon, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  aria-label="Социальная сеть Зона Комфорта"
-                  className="grid h-10 w-10 place-items-center rounded-full border border-bronze-200/20 text-mist transition hover:border-bronze-200/60 hover:text-bronze-100"
-                >
-                  <Icon size={17} aria-hidden />
-                </a>
-              ))}
+              {contactLinks.map(({ href, label, icon: Icon }) =>
+                href.startsWith("/") ? (
+                  <Link
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="grid h-10 w-10 place-items-center rounded-full border border-bronze-200/20 text-mist transition hover:border-bronze-200/60 hover:text-bronze-100"
+                  >
+                    <Icon size={17} aria-hidden />
+                  </Link>
+                ) : (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="grid h-10 w-10 place-items-center rounded-full border border-bronze-200/20 text-mist transition hover:border-bronze-200/60 hover:text-bronze-100"
+                  >
+                    <Icon size={17} aria-hidden />
+                  </a>
+                )
+              )}
             </div>
           </div>
 
@@ -54,9 +78,9 @@ export function Footer() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
             <FooterColumn title="Покупателям">
               {buyerLinks.map((item) => (
-                <a key={item} href="#">
-                  {item}
-                </a>
+                <Link key={item.label} href={item.href}>
+                  {item.label}
+                </Link>
               ))}
             </FooterColumn>
             <FooterColumn title="О компании">
@@ -71,33 +95,16 @@ export function Footer() {
           <div className="glass-card p-5">
             <h2 className="font-display text-2xl text-ivory">Будьте в курсе новинок</h2>
             <p className="mt-2 text-sm text-mist">Редкие поступления, коллекции и персональные подборки.</p>
-            <form className="mt-5 flex gap-2">
-              <label className="sr-only" htmlFor="footer-email">
-                Email
-              </label>
-              <input
-                id="footer-email"
-                className="field h-12 px-4 text-sm"
-                type="email"
-                placeholder="Введите e-mail"
-              />
-              <button
-                type="submit"
-                aria-label="Подписаться"
-                className="grid h-12 w-12 shrink-0 place-items-center rounded-[10px] bg-bronze-200 text-ink-950 transition hover:bg-bronze-100"
-              >
-                <ArrowRight size={18} aria-hidden />
-              </button>
-            </form>
+            <NewsletterForm />
             <div className="mt-6 grid gap-3 text-sm text-mist">
               <span className="flex items-center gap-3">
-                <Phone size={17} className="text-bronze-200" aria-hidden /> 8 (800) 555-35-35
+                <Phone size={17} className="text-bronze-200" aria-hidden /> {siteContacts.phone}
               </span>
               <span className="flex items-center gap-3">
-                <MapPin size={17} className="text-bronze-200" aria-hidden /> Москва, ул. Дизайнеров, 15
+                <MapPin size={17} className="text-bronze-200" aria-hidden /> {siteContacts.shortAddress}
               </span>
               <span className="flex items-center gap-3">
-                <Mail size={17} className="text-bronze-200" aria-hidden /> info@zonakomforta.ru
+                <Mail size={17} className="text-bronze-200" aria-hidden /> {siteContacts.email}
               </span>
             </div>
           </div>
@@ -105,9 +112,10 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col gap-3 border-t border-bronze-200/10 pt-5 text-xs text-mist md:flex-row md:items-center md:justify-between">
           <span>© 2026 Зона Комфорта. Все права защищены.</span>
-          <span className="flex gap-5">
-            <a href="#">Политика конфиденциальности</a>
-            <a href="#">Пользовательское соглашение</a>
+          <span className="flex flex-wrap gap-5">
+            <Link href="/privacy">Политика конфиденциальности</Link>
+            <Link href="/terms">Пользовательское соглашение</Link>
+            <CookieSettingsLink />
           </span>
         </div>
       </div>

@@ -1,8 +1,10 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { useToast } from "@/components/ui/ToastProvider";
+import { createMailtoLink } from "@/lib/mailto";
 
 export function ContactForm({ compact = false }: { compact?: boolean }) {
   const { toast } = useToast();
@@ -23,12 +25,19 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
     }
 
     setPending(true);
-    window.setTimeout(() => {
-      console.log("Contact request", payload);
-      setPending(false);
-      event.currentTarget.reset();
-      toast("Заявка отправлена", "Дизайнер свяжется с вами для уточнения деталей.");
-    }, 700);
+    window.location.href = createMailtoLink({
+      subject: "Заявка на консультацию Зона Комфорта",
+      lines: [
+        "Здравствуйте.",
+        "Нужна консультация по подбору мебели.",
+        "",
+        `Имя: ${payload.name.trim()}`,
+        `Телефон: ${payload.phone.trim()}`,
+        payload.message.trim() ? `Сообщение: ${payload.message.trim()}` : ""
+      ]
+    });
+    setPending(false);
+    toast("Письмо подготовлено", "Подтвердите отправку в почтовом клиенте.");
   };
 
   return (
@@ -36,11 +45,18 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
       {!compact ? <h2 className="font-display text-3xl text-ivory">Оставить заявку</h2> : null}
       <label className="grid gap-2 text-sm text-mist">
         Имя
-        <input className="field h-12 px-4" name="name" placeholder="Ваше имя" />
+        <input className="field h-12 px-4" name="name" placeholder="Ваше имя" autoComplete="name" required />
       </label>
       <label className="grid gap-2 text-sm text-mist">
         Телефон
-        <input className="field h-12 px-4" name="phone" placeholder="+7 (___) ___-__-__" />
+        <input
+          className="field h-12 px-4"
+          name="phone"
+          type="tel"
+          placeholder="+7 (___) ___-__-__"
+          autoComplete="tel"
+          required
+        />
       </label>
       <label className="grid gap-2 text-sm text-mist">
         Сообщение
@@ -53,6 +69,13 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
       <Button type="submit" disabled={pending}>
         {pending ? "Отправляем" : "Отправить заявку"}
       </Button>
+      <p className="text-xs leading-5 text-mist">
+        Нажимая кнопку, вы соглашаетесь на обработку персональных данных по{" "}
+        <Link href="/privacy" className="text-bronze-100 underline-offset-4 hover:underline">
+          Политике конфиденциальности
+        </Link>
+        .
+      </p>
     </form>
   );
 }

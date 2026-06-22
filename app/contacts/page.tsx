@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { siteContacts } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Контакты",
@@ -8,10 +9,10 @@ export const metadata: Metadata = {
 };
 
 const contacts = [
-  { icon: Phone, label: "Телефон", value: "8 (800) 555-35-35" },
-  { icon: Mail, label: "Email", value: "info@zonakomforta.ru" },
-  { icon: MapPin, label: "Адрес", value: "Москва, ул. Дизайнеров, 15, ТЦ «Интерьер Плаза», 3 этаж" },
-  { icon: Clock, label: "Время работы", value: "Ежедневно с 9:00 до 21:00" }
+  { icon: Phone, label: "Телефон", value: siteContacts.phone },
+  { icon: Mail, label: "Email", value: siteContacts.email },
+  { icon: MapPin, label: "Адрес", value: siteContacts.address },
+  { icon: Clock, label: "Время работы", value: siteContacts.hours }
 ];
 
 export default function ContactsPage() {
@@ -21,8 +22,8 @@ export default function ContactsPage() {
         <p className="text-sm uppercase text-bronze-100">Шоурум и консультации</p>
         <h1 className="page-title mt-3">Контакты</h1>
         <p className="mt-6 text-lg leading-8 text-mist">
-          Свяжитесь с нами, чтобы обсудить подбор мебели, материалы и сроки. Формы пока работают в
-          режиме имитации заявки.
+          Свяжитесь с нами, чтобы обсудить подбор мебели, материалы и сроки. Форма подготовит
+          письмо на почту шоурума, чтобы вы могли сразу отправить заявку.
         </p>
         <div className="mt-8 grid gap-4">
           {contacts.map((item) => (
@@ -45,7 +46,7 @@ export default function ContactsPage() {
             <p className="text-sm uppercase text-bronze-100">Зона Комфорта</p>
             <h2 className="mt-2 font-display text-3xl text-ivory">Тёмная карта шоурума</h2>
             <p className="mt-3 max-w-sm text-sm leading-6 text-mist">
-              Москва, ул. Дизайнеров, 15. Вход со стороны центральной галереи.
+              {siteContacts.shortAddress}. Вход со стороны центральной галереи.
             </p>
           </div>
         </div>
